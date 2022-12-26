@@ -49,8 +49,9 @@ const userScheema = new mongoose.Schema({
     },
     profileType:{
         type:String,
-        default:"Basic"
+        default:"Verified"
     },
+    lastActive:String
 
 
 

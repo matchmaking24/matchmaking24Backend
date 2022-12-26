@@ -9,6 +9,8 @@ const RegisterUser = async(req,res)=>{
             await newUser.save();
             return res.status(200).json({success:true,message:"Profile Registerd"})
         }
+        const lastActive = new Date()
+        await userScheema.findOneAndUpdate({email},{$set:{lastActive}})
         return res.status(200).json({success:true,message:user})
     } catch (error) {
         return res.status(500).json({success:false,message:`some internal error ${error}`})
