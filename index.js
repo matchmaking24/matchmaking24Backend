@@ -10,7 +10,7 @@ const app = express()
 app.use(express.json())
 
 app.use(cors({
-    origin:['http://localhost:3000','https://matchmaking24.netlify.app'],
+    origin:['http://localhost:3000','https://matchmaking24.netlify.app','https://matchmaking24.com'],
     methods: ['GET', 'PUT', 'POST','DELETE'], 
     allowedHeaders: ['Content-Type', 'Authorization', 'x-csrf-token'], 
     credentials: true, 
