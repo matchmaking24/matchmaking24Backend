@@ -43,9 +43,8 @@ const getAlluser = async (req,res)=>{
 
 const updateUser = async(req,res)=>{
     try {
-        const {email,language,lokingFor} = req.body;
+        const {email,language,lokingFor,year} = req.body;
         const user = await userScheema.findOne({email})
-       
         if(user){
             if(language){
                 for(let i = 0; language.length>i;i++){
@@ -56,6 +55,12 @@ const updateUser = async(req,res)=>{
                 for(let i = 0; lokingFor.length>i;i++){
                     await userScheema.findOneAndUpdate({email:email},{$push:{lokingFor:lokingFor[i]}})
                 }
+            }
+            if(year){
+                const currentYear = new Date().getFullYear()
+                const age = currentYear-year.split('-')[0]
+                await userScheema.findOneAndUpdate({email:email},{$set:{age:age}})
+
             }
             await userScheema.findOneAndUpdate({email:email},{$set:{...req.body}})
             return res.status(200).json({success:true, message:"Profile Updated"})
