@@ -43,7 +43,7 @@ const getAlluser = async (req,res)=>{
 
 const updateUser = async(req,res)=>{
     try {
-        const {email,language,lokingFor,year} = req.body;
+        const {email,language,lokingFor,year,calendly} = req.body;
         const user = await userScheema.findOne({email})
         if(user){
             if(language){
@@ -62,7 +62,7 @@ const updateUser = async(req,res)=>{
                 await userScheema.findOneAndUpdate({email:email},{$set:{age:age}})
 
             }
-            await userScheema.findOneAndUpdate({email:email},{$set:{...req.body}})
+            await userScheema.findOneAndUpdate({email:email},{$set:{calendly,...req.body}})
             return res.status(200).json({success:true, message:"Profile Updated"})
         }
         return res.status(200).json({success:true, message:"user not found"})

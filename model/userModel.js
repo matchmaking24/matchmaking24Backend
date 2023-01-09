@@ -43,6 +43,7 @@ const userScheema = new mongoose.Schema({
     telegram:String,
     twiter:String,
     instagram:String,
+    calendly:String,
     role:{
         type:String,
         default:"User"
