@@ -35,7 +35,13 @@ const getAlluser = async (req,res)=>{
         const {page} = req.query
         const Skip =( page-1)*10;
         const users = await userScheema.find().skip(Skip).limit(10)
-        return res.status(200).json({success:true,message:users})
+        const usersData = []
+        for(let i=0;i<users.length;i++){
+            if(users[i].industry){
+                usersData.push(users[i])
+            }
+        }
+        return res.status(200).json({success:true,message:usersData})
     } catch (error) {
         return res.status(500).json({success:false,message:`some internal error ${error}`})
     }
